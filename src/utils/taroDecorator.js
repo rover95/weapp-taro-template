@@ -7,10 +7,10 @@ export default function (taro){
       token需要在登录成功后，在对应的action中注入到taro对象里
       为了避免混乱不要在全局的taro中随意注入数据 
       */
-      let token = taro.fs_auth_token;
+      let token = taro.baidu_ai_token || taro.getStorageSync('baidu_ai_token');
       if(token){
         url += url.indexOf('?') == -1 ? '?' : '&';
-        url += `token=${token}`;
+        url += `access_token=${token}`;
       }
     }
     return taro.request({
