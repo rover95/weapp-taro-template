@@ -6,6 +6,8 @@ import { AtActionSheet, AtActionSheetItem } from "taro-ui";
 import { imgGeneral } from '../../actions/ai';
 import { getAccessToken } from "../../actions/auth";
 
+import './tool.scss';
+
 @connect((state) => ({
   state
 }))
@@ -14,11 +16,52 @@ class Discern extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      isOpen: false
+      isOpen: false,
+      wordsArr:[],
+      imgBase64String:null
     };
   }
   config={
-    navigationBarTitleText: '工具'
+    navigationBarTitleText: '识图'
+  }
+  upLoadImg(type){
+    this.choseImg(type).then(tempFilePath => {
+      return this.imgBase64(tempFilePath)
+    }).then(res => {
+      console.log(res);
+      this.setState({
+        wordsArr: [],
+        imgBase64String: res.data,
+        isOpen: false
+      })
+    })
+  }
+  choseImg(type){
+    return new Promise((resolve, reject)=>{
+      Taro.chooseImage({
+        count: 1,
+        sourceType: [type],
+        sizeType: ['compressed'],
+        success: res => {
+          console.log(res);
+          const tempFilePath = res.tempFilePaths[0];
+          resolve(tempFilePath)
+        }
+      })
+    })
+    
+  }
+  imgBase64(tempFilePath){
+    return new Promise((resolve, reject)=>{
+      wx.getFileSystemManager().readFile({
+        filePath: tempFilePath, //选择图片返回的相对路径
+        encoding: 'base64', //编码格式
+        success: res => { //成功的回调
+          resolve(res)
+        }
+      })
+    })
+    
   }
   componentDidMount() {
     
@@ -33,21 +76,33 @@ class Discern extends Component {
           });
         }}
         >选择图片</Button>
-        <Button onClick={(e)=>{
-          this.props.dispatch(imgGeneral({ 
-            url:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1567415909&di=2553e731bebd3e7a6ba1726035f3fa5d&imgtype=jpg&er=1&src=http%3A%2F%2Fimg4.duitang.com%2Fuploads%2Fitem%2F201407%2F01%2F20140701120602_8JkuA.jpeg'
-          }
-          ))
-        }}>选择图片</Button>
+        {this.state.imgBase64String ? <Button onClick={(e) => {
+          Taro.showLoading();
+          this.props.dispatch(imgGeneral({
+            image: this.state.imgBase64String
+          })).then(res=>{
+            console.log(res);
+            Taro.hideLoading();
+            this.setState({
+              wordsArr: res.data.words_result
+            })
+          })
+        }}>上传</Button>:null}
+        
+        {this.state.wordsArr.map((val,idx)=>{
+          return <View className="row" key={idx}>{val.words}</View>
+        })}
         <AtActionSheet isOpened={this.state.isOpen} cancelText='取消'>
           <AtActionSheetItem onClick={()=>{
-            this.props.dispatch(add());
+            this.upLoadImg('album')
           }}
           >
-            counter 加一
+            相册
         </AtActionSheetItem>
-          <AtActionSheetItem>
-            按钮二
+          <AtActionSheetItem onClick={()=>{
+            this.upLoadImg('camera')
+          }}>
+            拍照
           </AtActionSheetItem>
         </AtActionSheet>
       </View>

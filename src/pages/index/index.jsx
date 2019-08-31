@@ -22,7 +22,7 @@ import './index.scss';
     dispatch(asyncAdd());
   },
   getAccessToken(){
-    dispatch(getAccessToken())
+    return dispatch(getAccessToken())
   }
 }))
 class Index extends Component {
@@ -31,7 +31,15 @@ class Index extends Component {
   }
   componentWillReceiveProps (nextProps) {
   }
-
+  componentDidMount() {
+    Taro.showLoading()
+    this.props.dispatch(getAccessToken()).then(()=>{
+      Taro.hideLoading()
+      Taro.navigateTo({
+        url: '../tool/index'
+      })
+    })
+  }
   componentWillUnmount () { 
     
   }
@@ -42,19 +50,23 @@ class Index extends Component {
 
   // 获取百度AI令牌
   getAccessToken_(){
+    Taro.showLoading()
     Taro.get('https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=BaknhgTGUUlR9I5oNyPuWA27&client_secret=rlPPHoK2PA59Z2ycEu8SzQGoRwNut1C6').then(res => {
       console.log(res);
-
+      Taro.hideLoading()
+      Taro.reLaunch({
+        url:'../tool/index'
+      })
     })
   }
   render () {
     return (
       <View className='index'>
-        <Button className='add_btn' onClick={this.props.add}>+</Button>
+        {/* <Button className='add_btn' onClick={this.props.add}>+</Button>
         <Button className='dec_btn' onClick={this.props.dec}>-</Button>
         <Button className='dec_btn' onClick={this.props.getAccessToken}>async</Button>
         <View><Text>{this.props.counter.num}</Text></View>
-        <View><Text>Hello, World</Text></View>
+        <View><Text>Hello, World</Text></View> */}
       </View>
     );
   }
