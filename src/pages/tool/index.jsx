@@ -24,18 +24,8 @@ class Discern extends Component {
   config={
     navigationBarTitleText: '识图'
   }
-  upLoadImg(type){
-    this.choseImg(type).then(tempFilePath => {
-      return this.imgBase64(tempFilePath)
-    }).then(res => {
-      console.log(res);
-      this.setState({
-        wordsArr: [],
-        imgBase64String: res.data,
-        isOpen: false
-      })
-    })
-  }
+  
+  // 选取图片
   choseImg(type){
     return new Promise((resolve, reject)=>{
       Taro.chooseImage({
@@ -51,6 +41,7 @@ class Discern extends Component {
     })
     
   }
+  // base64转码
   imgBase64(tempFilePath){
     return new Promise((resolve, reject)=>{
       wx.getFileSystemManager().readFile({
@@ -62,6 +53,19 @@ class Discern extends Component {
       })
     })
     
+  }
+  // 上传识别
+  upLoadImg(type) {
+    this.choseImg(type).then(tempFilePath => {
+      return this.imgBase64(tempFilePath)
+    }).then(res => {
+      console.log(res);
+      this.setState({
+        wordsArr: [],
+        imgBase64String: res.data,
+        isOpen: false
+      })
+    })
   }
   componentDidMount() {
     
