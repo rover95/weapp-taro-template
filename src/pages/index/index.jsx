@@ -32,13 +32,13 @@ class Index extends Component {
   componentWillReceiveProps (nextProps) {
   }
   componentDidMount() {
-    Taro.showLoading()
-    this.props.dispatch(getAccessToken()).then(()=>{
-      Taro.hideLoading()
-      Taro.navigateTo({
-        url: '../tool/index'
-      })
-    })
+    // Taro.showLoading()
+    // this.props.dispatch(getAccessToken()).then(()=>{
+    //   Taro.hideLoading()
+    //   Taro.navigateTo({
+    //     url: '../tool/index'
+    //   })
+    // })
   }
   componentWillUnmount () { 
     
@@ -50,10 +50,8 @@ class Index extends Component {
 
   // 获取百度AI令牌
   getAccessToken_(){
-    Taro.showLoading()
     Taro.get('https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=BaknhgTGUUlR9I5oNyPuWA27&client_secret=rlPPHoK2PA59Z2ycEu8SzQGoRwNut1C6').then(res => {
       console.log(res);
-      Taro.hideLoading()
       Taro.reLaunch({
         url:'../tool/index'
       })

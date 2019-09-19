@@ -3,7 +3,7 @@ import Taro, { Component } from '@tarojs/taro';
 import { Provider } from '@tarojs/redux';
 import 'taro-ui/dist/style/index.scss';
 
-import taroDecorator from "./utils/taroDecorator";
+import taroDecorator from "./services/taroDecorator";
 
 import Index from './pages/index';
 
@@ -27,6 +27,7 @@ class App extends Component {
 
   config = {
     pages: [
+      'pages/auth/login/login',
       'pages/index/index',
       'pages/tool/index'
     ],

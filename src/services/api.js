@@ -1,0 +1,3 @@
+exports.getLoginUrl = ()=>{
+  return `/wxlogin`
+} 
