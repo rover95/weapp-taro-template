@@ -1,15 +1,14 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Button, Text } from '@tarojs/components';
-import { AtInput } from 'taro-ui'
+import { AtInput, AtForm, AtButton } from 'taro-ui'
 import { connect } from '@tarojs/redux';
 
-import { getAccessToken } from "../../../actions/auth";
+import { getAccessToken, login } from "../../../actions/auth";
 import { getLoginUrl } from "../../../services/api";
+import { promises } from 'dns';
 
-@connect((state) => state, (dispatch) => ({
-  // getAccessToken() {
-  //   return dispatch(getAccessToken())
-  // }
+@connect((state) => state.auth, (dispatch) => ({
+  
 }))
 
 class Login extends Component {
@@ -19,16 +18,35 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      
+      username:'admin',
+      password:'123456'
     };
   }
   componentDidMount(){
     for(let i=0;i<10;i++){
       // Taro.get('https://finance.sina.cn/china/gncj/2019-05-31/detail-ihvhiqay2662671.d.html')
     }
+    
   }
-  login(){
-    Taro.post(getLoginUrl(), { username: "smartsite", password: "smartsiteadmin"})
+  login(e){
+    const {username,password} = this.state;
+    this.props.dispatch(login(getLoginUrl(), { username, password })).then(res=>{
+      console.log(res, this.props);
+      
+    }).catch(err=>{
+      console.log(err);
+      
+    })
+  }
+  handleUsernameChange(val){
+    this.setState({
+      username:val
+    })
+  }
+  handlePasswordChange(val) {
+    this.setState({
+      password: val
+    })
   }
   // 获取百度AI令牌
   getAccessToken_() {
@@ -41,9 +59,16 @@ class Login extends Component {
   render() {
     return (
       <View>
-        <AtInput placeholder="用户名"/>
-        <AtInput type='password' placeholder="密码"/>
-        <Button style="margin: 40rpx 30rpx" onClick={this.login}>登录</Button>
+        <AtForm
+          onSubmit={()=>this.login()}
+        >
+          <AtInput name='username' value={this.state.username} placeholder='用户名' onChange={e=>this.handleUsernameChange(e)}/>
+          <AtInput name='password' value={this.state.password} type='password' placeholder='密码' onChange={e=>this.handlePasswordChange(e)}/>
+          <View style="padding: 40rpx 30rpx" >
+            <AtButton formType='submit'>登录</AtButton>
+          </View>
+          {/* <Button style="margin: 40rpx 30rpx" onClick={this.login}>登录</Button> */}
+        </AtForm>
       </View>
     );
   }

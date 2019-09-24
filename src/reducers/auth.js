@@ -1,17 +1,21 @@
 import * as Auth from "../constants/auth";
 
 const initState = {
-  AccessToken:null
+  userInfo:null
 }
 
 export default function auth(state = initState, action) {
   switch (action.type) {
-    case Auth.GET_ACCESS_TOKEN_SUCCESS:
+    case Auth.USER_LOGIN_SUCCESS:
       return {
         ...state,
-        AccessToken: action.payload.access_token
-      };
-    
+        userInfo: action.payload
+      }
+    case Auth.USER_LOGIN_FAIL:
+      return {
+        ...state,
+        userInfo: null
+      }
     default:
       return state;
   }

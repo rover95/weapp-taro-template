@@ -1,20 +1,43 @@
 import * as Auth from "../constants/auth";
 import Taro from '@tarojs/taro';
+import { setState } from "../store/globalState";
 
-export function getAccessToken (){
-  return (dispatch) => {
-    return Taro.get('https://aip.baidubce.com/oauth/2.0/token?grant_type=client_credentials&client_id=BaknhgTGUUlR9I5oNyPuWA27&client_secret=rlPPHoK2PA59Z2ycEu8SzQGoRwNut1C6').then(res => {
+export function login(url, data){
+  return dispatch =>{
+    function dealError() {
+      dispatch(loginFail())
+      Taro.showToast({
+        title: '登录失败',
+        icon: 'none',
+        duration: 1500
+      })
+    }
+    return Taro.post(url, data).then(res=>{
       if (res.statusCode == 200){
-        dispatch(getAccessTokenSuccess(res.data))
+        dispatch(loginSuccess(res.data));
+        Taro.reLaunch({
+          url: '/pages/index/index'
+        })
+      }else{
+        dealError()
       }
+      return res
+    }).catch(err=>{
+      dealError()
+      return err
     })
   }
 }
-export const getAccessTokenSuccess = (data) =>{
-  Taro.baidu_ai_token = data.access_token
-  Taro.setStorageSync('baidu_ai_token', data.access_token);
+export function loginSuccess(data){
+  setState('token',data.token)
   return {
-    type: Auth.GET_ACCESS_TOKEN_SUCCESS,
-    payload:data
+    type: Auth.USER_LOGIN_SUCCESS,
+    payload: data
+  }
+}
+
+export function loginFail(){
+  return {
+    type: Auth.USER_LOGIN_FAIL,
   }
 }

@@ -29,7 +29,7 @@ class App extends Component {
     pages: [
       'pages/auth/login/login',
       'pages/index/index',
-      'pages/tool/index'
+      'pages/demo/demo',
     ],
     window: {
       backgroundTextStyle: 'light',

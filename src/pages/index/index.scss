@@ -1,4 +1,8 @@
 .index {
   flex-direction: column;
   width: 100%;
+  .title{
+    text-align: center;
+    padding: 100rpx 30rpx
+  }
 }
