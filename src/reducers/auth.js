@@ -6,27 +6,29 @@ function initState(data) {
     data,
     isRequesting: false,
     error: null
-  }
+  };
 }
 
 const initAuth = {
   userInfo:null,
   isRequesting:false,
   error:null
-}
-exports.auth = createReducer(initAuth, {
-  [Types.USER_LOGIN_SUCCESS]: (state, action) => {    
-    return {
-      ...state,
-      userInfo: action.payload
-    }
-  },
-  [Types.USER_LOGIN_FAIL]: (state, action) => {
-    return {
-      ...state,
-      userInfo: null
-    }
-  },
-})
+};
+export const auth = (state = initState, action) => {
+  switch (action.type) {
+    case Types.USER_LOGIN_SUCCESS:
+      return {
+        ...state,
+        userInfo: action.payload
+      };
+    case Types.USER_LOGIN_FAIL:
+      return {
+        ...state,
+        userInfo: null
+      };
+    default:
+      return state;
+  }
+};
 
-exports.siteList = createReducer(initState([]), createHandlers(Types.GET_SITELIST))
+export const siteList = createReducer(initState([]), createHandlers(Types.GET_SITELIST));

@@ -2,8 +2,11 @@ import Taro, { Component } from '@tarojs/taro';
 import { View, Button, Text } from '@tarojs/components';
 import { connect } from '@tarojs/redux';
 import { getSiteList } from "../../actions/site";
+import { getSiteUrl } from "../../services/api";
 
 import { add, minus, asyncAdd } from '../../actions/counter';
+
+import './demo.scss';
 
 @connect((state) => (state), (dispatch) => ({
   add() {
@@ -26,9 +29,8 @@ class Demo extends Component {
   }
   componentWillReceiveProps (nextProps) {}
   componentWillMount(){
-    this.props.dispatch(getSiteList('/projects/132/sites/structs/factors/stations?portal=C')).then(res=>{
-      console.log(this.props);
-    })
+    
+    this.props.dispatch(getSiteList(getSiteUrl(132,'C')));
 
   }
   componentDidMount() {}
@@ -41,8 +43,7 @@ class Demo extends Component {
         <Button className='add_btn' onClick={this.props.add}>+</Button>
         <Button className='dec_btn' onClick={this.props.dec}>-</Button>
         <Button className='dec_btn' onClick={this.props.asyncAdd}>async</Button>
-        <View><Text>{this.props.counter.num}</Text></View>
-        <View><Text>Hello, World</Text></View>
+        <View className='counter'><Text>{this.props.counter.num}</Text></View>
       </View>
     );
   }

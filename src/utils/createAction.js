@@ -1,4 +1,4 @@
-import Taro from '@tarojs/taro';
+import request from "../services/request";
 import getType from "../utils/createActionType";
 
 export function createAction({method,url,data,type}){
@@ -6,7 +6,7 @@ export function createAction({method,url,data,type}){
     dispatch({
       type: type,
     })
-    return Taro[method](url,data).then(res=>{
+    return request[method](url,data).then(res=>{
       if (res.statusCode === 200 || res.statusCode === 204){
         dispatch({
           type: getType(type).success,

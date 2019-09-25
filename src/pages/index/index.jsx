@@ -33,7 +33,7 @@ class Index extends Component {
   render () {
     return (
       <View className='index'>
-        <View className="title"><Text>Hello, World</Text></View>
+        <View className='title'><Text>Hello, World</Text></View>
       </View>
     );
   }
