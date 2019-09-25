@@ -23,7 +23,7 @@
     "dev:h5": "npm run build:h5 -- --watch",
     "dev:rn": "npm run build:rn -- --watch"
   },
-  "author": "",
+  "author": "rovelast",
   "license": "MIT",
   "dependencies": {
     "@tarojs/async-await": "1.3.13",
@@ -37,6 +37,7 @@
     "@tarojs/taro-swan": "1.3.13",
     "@tarojs/taro-tt": "1.3.13",
     "@tarojs/taro-weapp": "1.3.13",
+    "deepmerge": "^4.0.0",
     "nerv-devtools": "^1.4.0",
     "nervjs": "^1.4.0",
     "redux": "^4.0.0",

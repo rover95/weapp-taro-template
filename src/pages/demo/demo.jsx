@@ -1,15 +1,13 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Button, Text } from '@tarojs/components';
 import { connect } from '@tarojs/redux';
+import { getSiteList } from "../../actions/site";
 
 import { add, minus, asyncAdd } from '../../actions/counter';
 
-@connect(({ counter }) => ({
-  counter
-}), (dispatch) => ({
+@connect((state) => (state), (dispatch) => ({
   add() {
     dispatch(add());
-
   },
   dec() {
     dispatch(minus());
@@ -27,6 +25,12 @@ class Demo extends Component {
     };
   }
   componentWillReceiveProps (nextProps) {}
+  componentWillMount(){
+    this.props.dispatch(getSiteList('/projects/132/sites/structs/factors/stations?portal=C')).then(res=>{
+      console.log(this.props);
+    })
+
+  }
   componentDidMount() {}
   componentWillUnmount () {}
   componentDidShow () {}

@@ -1,11 +1,11 @@
 import Taro, { Component } from '@tarojs/taro';
 import { View, Button, Text } from '@tarojs/components';
-import { AtInput, AtForm, AtButton } from 'taro-ui'
+import { AtInput, AtForm, AtButton, AtMessage } from 'taro-ui'
 import { connect } from '@tarojs/redux';
 
 import { getAccessToken, login } from "../../../actions/auth";
 import { getLoginUrl } from "../../../services/api";
-import { promises } from 'dns';
+import { getState, setState } from "../../../store/globalState";
 
 @connect((state) => state.auth, (dispatch) => ({
   
@@ -26,16 +26,18 @@ class Login extends Component {
     for(let i=0;i<10;i++){
       // Taro.get('https://finance.sina.cn/china/gncj/2019-05-31/detail-ihvhiqay2662671.d.html')
     }
-    
   }
   login(e){
     const {username,password} = this.state;
     this.props.dispatch(login(getLoginUrl(), { username, password })).then(res=>{
-      console.log(res, this.props);
-      
-    }).catch(err=>{
-      console.log(err);
-      
+      Taro.reLaunch({
+        url: '/pages/index/index'
+      })
+    }).catch(err=>{                                
+      Taro.atMessage({
+        'message': err.message,
+        'type': 'error',
+      })
     })
   }
   handleUsernameChange(val){
@@ -48,17 +50,10 @@ class Login extends Component {
       password: val
     })
   }
-  // 获取百度AI令牌
-  getAccessToken_() {
-    this.props.dispatch(getAccessToken()).then(() => {
-      Taro.navigateTo({
-        url: '../../tool/index'
-      })
-    })
-  }
   render() {
     return (
       <View>
+        <AtMessage></AtMessage>
         <AtForm
           onSubmit={()=>this.login()}
         >

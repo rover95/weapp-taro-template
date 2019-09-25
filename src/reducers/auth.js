@@ -1,22 +1,32 @@
-import * as Auth from "../constants/auth";
+import * as Types from "../constants/actionType";
+import { createReducer, createHandlers } from "../utils/creatrReducer";
 
-const initState = {
-  userInfo:null
-}
-
-export default function auth(state = initState, action) {
-  switch (action.type) {
-    case Auth.USER_LOGIN_SUCCESS:
-      return {
-        ...state,
-        userInfo: action.payload
-      }
-    case Auth.USER_LOGIN_FAIL:
-      return {
-        ...state,
-        userInfo: null
-      }
-    default:
-      return state;
+function initState(data) {
+  return {
+    data,
+    isRequesting: false,
+    error: null
   }
 }
+
+const initAuth = {
+  userInfo:null,
+  isRequesting:false,
+  error:null
+}
+exports.auth = createReducer(initAuth, {
+  [Types.USER_LOGIN_SUCCESS]: (state, action) => {    
+    return {
+      ...state,
+      userInfo: action.payload
+    }
+  },
+  [Types.USER_LOGIN_FAIL]: (state, action) => {
+    return {
+      ...state,
+      userInfo: null
+    }
+  },
+})
+
+exports.siteList = createReducer(initState([]), createHandlers(Types.GET_SITELIST))

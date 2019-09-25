@@ -1,43 +1,30 @@
-import * as Auth from "../constants/auth";
+import * as Types from '../constants/actionType'
 import Taro from '@tarojs/taro';
 import { setState } from "../store/globalState";
 
-export function login(url, data){
+exports.login = (url, data)=>{
   return dispatch =>{
-    function dealError() {
-      dispatch(loginFail())
-      Taro.showToast({
-        title: '登录失败',
-        icon: 'none',
-        duration: 1500
+    function dealError(data) {
+      dispatch({
+        type: Types.USER_LOGIN_FAIL,
       })
+      throw new Error(data)
     }
-    return Taro.post(url, data).then(res=>{
+    return Taro.post(url, data,{hideErrorToast:true}).then(res=>{
       if (res.statusCode == 200){
-        dispatch(loginSuccess(res.data));
-        Taro.reLaunch({
-          url: '/pages/index/index'
-        })
+        setState('token', res.data.token)
+        Taro.setStorageSync('token', res.data.token)
+        dispatch({
+          type: Types.USER_LOGIN_SUCCESS,
+          payload: res.data
+        });
+        
+        return res.data
       }else{
-        dealError()
+        dealError(res.data.message || '请求出错')
       }
-      return res
-    }).catch(err=>{
-      dealError()
-      return err
+    },err=>{
+      dealError(err.message || '请求出错')
     })
-  }
-}
-export function loginSuccess(data){
-  setState('token',data.token)
-  return {
-    type: Auth.USER_LOGIN_SUCCESS,
-    payload: data
-  }
-}
-
-export function loginFail(){
-  return {
-    type: Auth.USER_LOGIN_FAIL,
   }
 }
