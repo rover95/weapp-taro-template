@@ -83,12 +83,6 @@ class LineChart extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      opt0: {
-        onInit: pieChart
-      },
-      opt2: {
-        onInit: pieChart
-      },
       opts: [
         {
           opt: {
@@ -113,7 +107,7 @@ class LineChart extends Component {
   componentDidHide () {}
   config = {
     usingComponents: {
-      'ff-canvas': '../../static/f2-canvas/f2-canvas'
+      'ff-canvas': '/static/f2-canvas/f2-canvas'
     }
   }
   render() {

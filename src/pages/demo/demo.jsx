@@ -10,7 +10,6 @@ import LineChart from '../../components/lineChart/lineChart';
 
 import './demo.scss';
 
-let charts = [];
 const data = [{
     date: '2017-06-05',
     value: 116
@@ -176,40 +175,11 @@ class Demo extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      chartRenderArr: [
-        {
-          opts: {
-            onInit: lineChart(charts, data.map(val => { val.time = val.date; return val; }))
-          }
-        },
-        {
-          opts: {
-            onInit: pieChart(charts)
-          }
-        },
-      ],
-      opts: {
-        onInit: lineChart(data.map(val => { val.time = val.date; return val; }))
-      },
       chartData: data.map(val => { val.time = val.date; return val; })
     };
   }
   componentWillMount(){
     this.props.dispatch(getSiteList(getSiteUrl(132,'C')));
-    // const chartRenderArr = [];
-    // chartRenderArr.push({
-    //   key: 'line',
-    //   opts: {
-    //     onInit: lineChart(charts, data.map(val => { val.time = val.date; return val; }))
-    //   }
-    // });
-    // chartRenderArr.push({
-    //   key: 'pie',
-    //   opts: {
-    //     onInit: pieChart(charts)
-    //   }
-    // });
-    // this.setState({chartRenderArr});
   }
   componentDidMount() {}
   componentWillReceiveProps(nextProps) { }
@@ -217,15 +187,16 @@ class Demo extends Component {
   componentDidShow () {}
   componentDidHide () {}
   onAdd(){
-    const {counter} = this.props;
     this.props.dispatch(add());
-    data.push({ 'time': 2018 + counter.num, 'value': 5 + counter.num });
-    charts[1].changeData(data);
+  }
+  onChartUpdate(){
+    this.setState({
+      chartData: data.map(val => { val.time = val.date; val.value = 100 * Math.random(); return val; })
+    });
   }
   config = {
     usingComponents: {
-      'ff-canvas': '../../static/f2-canvas/f2-canvas',
-      'line-wx': '../../static/lineChart-wx/line'
+      'line-wx': '../../components/wx-lineChart/line'
     }
   }
   render() {
@@ -235,6 +206,7 @@ class Demo extends Component {
         <Button className='dec_btn' onClick={this.props.onDec}>-</Button>
         <Button className='dec_btn' onClick={this.props.onAsyncAdd}>async</Button>
         <View className='counter'><Text>{this.props.counter.num}</Text></View>
+        <Button className='dec_btn' onClick={()=>{this.onChartUpdate();}}>刷新图表</Button>
         {/* {this.state.chartRenderArr.length>0
           ?<View style='width:100vw;height:300px;background-color:#999'>
             <ff-canvas canvas-id='asd' opts={this.state.opts}></ff-canvas>
