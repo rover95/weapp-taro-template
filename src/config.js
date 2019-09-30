@@ -7,13 +7,13 @@ const baseConfig = {
 }
 
 const development = {
-  baseUrl:'http://10.30.91.161:8082',
+  baseUrl:'http://49.4.92.161:8082',
   requestCache: true,    //开启异步请求缓存
   ...baseConfig
 }
 
 const production = {
-  baseUrl:'https://api.cn',
+  baseUrl:'https://api.smartsite.anxinyun.cn',
   ...baseConfig
 }
 

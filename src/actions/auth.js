@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro';
 import * as Types from '../constants/actionType';
-import request from "../services/request";
-import { setState } from "../store/globalState";
+import request from '../services/request';
+import { setState } from '../store/globalState';
 
 export const login = (url, data)=>{
   return dispatch =>{

@@ -5,7 +5,10 @@
     "semi": ["error", "always"],
     "no-var": "error",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".tsx"] }],
-    "import/prefer-default-export":0
+    "import/prefer-default-export":0,
+    "quotes": [1, "single"],
+    "semi-spacing": [0, {"before": false, "after": true}],
+    "key-spacing": [1, { "beforeColon": false, "afterColon": true }]
   },
     "parser": "babel-eslint"
 }

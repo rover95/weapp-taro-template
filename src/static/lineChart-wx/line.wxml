@@ -1,0 +1,6 @@
+<!--dist/components/line.wxml-->
+<view wx:if="{{opts.length>0}}" wx:for="{{opts}}" wx:key="key" wx:for-index='idx' style='width:100vw;height:300px;background-color:#999'>
+  图表{{}}
+  <ff-canvas canvas-id="{{idx + 'p'}}" opts="{{item}}"></ff-canvas>
+</view>
+

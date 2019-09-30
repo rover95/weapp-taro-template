@@ -1,6 +1,6 @@
 import getType from "../utils/createActionType";
-import { USER_LOGIN_SUCCESS } from "../constants/auth";
 
+//构建异步请求reducer处理函数
 export function createHandlers(type){
   const handlers = {
     [type]:(state,action)=>{
@@ -15,13 +15,14 @@ export function createHandlers(type){
   };
   return handlers;
 }
+//构建异步请求reducer
 export function createReducer(initialState, handlers) {
   return function reducer(state = initialState, action) {
     if (handlers.hasOwnProperty(action.type)) {
-      return handlers[action.type](state, action)
+      return handlers[action.type](state, action);
     } else {
-      return state
+      return state;
     }
-  }
+  };
 }
 

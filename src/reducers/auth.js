@@ -1,5 +1,5 @@
-import * as Types from "../constants/actionType";
-import { createReducer, createHandlers } from "../utils/creatrReducer";
+import * as Types from '../constants/actionType';
+import { createReducer, createHandlers } from '../utils/creatrReducer';
 
 function initState(data) {
   return {
@@ -10,11 +10,11 @@ function initState(data) {
 }
 
 const initAuth = {
-  userInfo:null,
-  isRequesting:false,
-  error:null
+  userInfo: null,
+  isRequesting: false,
+  error: null
 };
-export const auth = (state = initState, action) => {
+export const auth = (state = initAuth, action) => {
   switch (action.type) {
     case Types.USER_LOGIN_SUCCESS:
       return {
@@ -29,6 +29,7 @@ export const auth = (state = initState, action) => {
     default:
       return state;
   }
+  return state;
 };
 
 export const siteList = createReducer(initState([]), createHandlers(Types.GET_SITELIST));
