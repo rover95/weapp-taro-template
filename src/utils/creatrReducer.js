@@ -1,9 +1,9 @@
-import getType from "../utils/createActionType";
+import getType from '../utils/createActionType';
 
 //构建异步请求reducer处理函数
 export function createHandlers(type){
   const handlers = {
-    [type]:(state,action)=>{
+    [type]: (state,action)=>{
       return Object.assign({}, state, { isRequesting: true });
     },
     [getType(type).success]: (state, action) => {
@@ -26,3 +26,11 @@ export function createReducer(initialState, handlers) {
   };
 }
 
+//构建初始化state
+export function initState(data) {
+  return {
+    data,
+    isRequesting: false,
+    error: null
+  };
+}

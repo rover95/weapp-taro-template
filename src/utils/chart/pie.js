@@ -8,47 +8,14 @@ import F2 from '../../static/f2-canvas/lib/f2';
       value:''
     }]
 */
-export default function pieChart(){
-  const map = {
-    '芳华': '40%',
-    '妖猫传': '20%',
-    '机器之血': '18%',
-    '心理罪': '15%',
-    '寻梦环游记': '5%',
-    '其他': '2%'
-  };
-  const data = [{
-    name: '芳华',
-    percent: 0.4,
-    a: '1'
-    }, {
-      name: '妖猫传',
-      percent: 0.2,
-      a: '1'
-    }, {
-      name: '机器之血',
-      percent: 0.18,
-      a: '1'
-    }, {
-      name: '心理罪',
-      percent: 0.15,
-      a: '1'
-    }, {
-      name: '寻梦环游记',
-      percent: 0.05,
-      a: '1'
-    }, {
-      name: '其他',
-      percent: 0.02,
-      a: '1'
-    }
-  ];
+export default function pieChart(data){
   return (canvas, width, height) =>{
     const chart = new F2.Chart({
       el: canvas,
       width,
       height
     });
+    
     chart.source(data, {
       percent: {
         formatter: function formatter(val) {
@@ -56,10 +23,12 @@ export default function pieChart(){
         }
       }
     });
+    chart.animate(false);
     chart.legend({
-      position: 'right',
+      position: 'bottom',
+      align:'center',
       itemFormatter: function itemFormatter(val) {
-        return val + '  ' + map[val];
+        return val ;
       }
     });
     chart.tooltip(false);
@@ -67,8 +36,19 @@ export default function pieChart(){
       transposed: true,
       radius: 0.85
     });
+    chart.pieLabel({
+      anchorOffset: 5, // 锚点的偏移量
+      sidePadding: 0, // 文本距离画布左右两边的距离
+      skipOverlapLabels: false,// 是否不展示重叠的文本
+      label1(item, color) {
+        return {
+          text: item.name + item.percent*100+'%', // 文本内容
+          fill: color // 文本颜色
+        };
+      }
+    });
     chart.axis(false);
-    chart.interval().position('a*percent').color('name', ['#1890FF', '#13C2C2', '#2FC25B', '#FACC14', '#F04864', '#8543E0']).adjust('stack').style({
+    chart.interval().position('a*percent').color('name', ['#5C89FF', '#FF6383']).adjust('stack').style({
       lineWidth: 1,
       stroke: '#fff',
       lineJoin: 'round',
@@ -79,6 +59,7 @@ export default function pieChart(){
         easing: 'bounceOut'
       }
     });
+    
     chart.render();
   };
 }

@@ -1,7 +1,7 @@
 import Taro from '@tarojs/taro';
-import md5 from "blueimp-md5";
-import environment from "../config";
-import { getState } from "../store/globalState";
+import md5 from 'blueimp-md5';
+import environment from '../config';
+import { getState } from '../store/globalState';
 
 const { baseUrl, errorHandle, loadingHandle } = environment;
 
@@ -66,6 +66,7 @@ function requestBuilder(method, url, data, config) {
       });
     }
   }
+  
   // 调用本地异步请求数据缓存
   if (process.env.NODE_ENV === 'development' && environment.requestCache) {
     let requestCache = Taro.getStorageSync('requestCache');
@@ -118,7 +119,9 @@ function requestBuilder(method, url, data, config) {
         dealRequest();
         if (res.statusCode == 401) {
           Taro.clearStorageSync();
-          Taro.relauch();
+          Taro.reLaunch({
+            url: '/pages/auth/login/login'
+          });
         }
         if (res.statusCode !== 200 && res.statusCode !== 204) {
           dealError(res.data.message || '请求出错');
