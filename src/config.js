@@ -1,8 +1,8 @@
 let DEV = false;
-DEV = true;   //使用测试环境
+DEV = true;   //使用测试环境‍‌‌‌​‌‌‍​‍‍‌O
 
 const baseConfig = {
-  errorHandle:true,   //是否启用全局异常处理
+  errorHandle: true,   //是否启用全局异常处理‌‍‍‌‍​‌‌‍​‌‌‌‌‌​‌‌‍‌​‍‌‌‌‌​‍‍‍‍‌​‌‍‍‌‍​‌‌‍​‍‍‍‌‌​‍‌‌‌‌​‍‌‍‌​‍‌‌‌O
   loadingHandle:true, //是否启用全局loading加载提示
 };
 
