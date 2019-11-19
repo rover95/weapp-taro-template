@@ -90,7 +90,6 @@ Component({
     // yearEnd:2100
   },
   detached: function() {
-    console.log('dele');
   },
   attached: function() {},
   ready: function() {
