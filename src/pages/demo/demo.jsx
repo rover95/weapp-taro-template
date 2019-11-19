@@ -179,7 +179,7 @@ class Demo extends Component {
     };
   }
   componentWillMount(){
-    this.props.dispatch(getSiteList(getSiteUrl(132,'C')));
+    // this.props.dispatch(getSiteList(getSiteUrl(132,'C')));
   }
   componentDidMount() {}
   componentWillReceiveProps(nextProps) { }
@@ -202,19 +202,19 @@ class Demo extends Component {
   render() {
     return (
       <View className='index'>
-        <Button className='add_btn' onClick={()=>{this.onAdd();}}>+</Button>
+        {/* <Button className='add_btn' onClick={()=>{this.onAdd();}}>+</Button>
         <Button className='dec_btn' onClick={this.props.onDec}>-</Button>
         <Button className='dec_btn' onClick={this.props.onAsyncAdd}>async</Button>
-        <View className='counter'><Text>{this.props.counter.num}</Text></View>
-        <Button className='dec_btn' onClick={()=>{this.onChartUpdate();}}>刷新图表</Button>
+        <View className='counter'><Text>{this.props.counter.num}</Text></View> */}
+        {/* <Button className='dec_btn' onClick={()=>{this.onChartUpdate();}}>刷新图表</Button> */}
         {/* {this.state.chartRenderArr.length>0
           ?<View style='width:100vw;height:300px;background-color:#999'>
             <ff-canvas canvas-id='asd' opts={this.state.opts}></ff-canvas>
             </View>
           :''
         } */}
-        {/* <LineChart /> */}
-        <line-wx chartData={this.state.chartData}></line-wx>
+        <LineChart />
+        {/* <line-wx chartData={this.state.chartData}></line-wx> */}
         {/* {this.state.chartRenderArr.length > 0 ? this.state.chartRenderArr.map((item,idx) => {
           
           return <View key={idx + 'c'} style='width:100vw;height:300px;background-color:#999'>

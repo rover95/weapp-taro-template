@@ -83,6 +83,9 @@ class LineChart extends Component {
   constructor(props) {
     super(props);
     this.state = { 
+      opt0: {
+        onInit: pieChart
+      },
       opts: [
         {
           opt: {
@@ -112,12 +115,26 @@ class LineChart extends Component {
   }
   render() {
     return <View>
-      <View  style='width:100vw;height:300px;background-color:#999'>
+      <View>直接渲染 数组中opts（显示）</View>
+      <View style='width:100vw;height:300px;background-color:#999'>
         <ff-canvas canvas-id='1p' opts={this.state.opts[0].opt}></ff-canvas>
       </View>
-      {this.state.opts.map((val,idx)=>{
+      <View>循环渲染(不显示)</View>
+      {this.state.opts.map((val, idx) => {
         return <View key={idx} style='width:100vw;height:300px;background-color:#999'>
           <ff-canvas canvas-id={idx + 'p'} opts={val.opt}></ff-canvas>
+        </View>;
+      })}
+      <View>循环渲染-指定opts（显示）</View>
+      {this.state.opts.map((val, idx) => {
+        return <View key={idx} style='width:100vw;height:300px;background-color:#999'>
+          <ff-canvas canvas-id={idx + 'p'} opts={this.state.opt0}></ff-canvas>
+        </View>;
+      })}
+      <View>循环渲染-数组中opts（不显示）</View>
+      {this.state.opts.map((val, idx) => {
+        return <View key={idx} style='width:100vw;height:300px;background-color:#999'>
+          <ff-canvas canvas-id={idx + 'p'} opts={this.state.opts[0].opt}></ff-canvas>
         </View>;
       })}
     </View>; 
