@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "taro模板redux + taroUI",
+  "sourceAddress":"https://github.com/rover95/weapp-taro-template",
   "templateInfo": {
     "name": "redux",
     "typescript": false,
