@@ -12,6 +12,9 @@ export function createHandlers(type){
     [getType(type).fail]: (state, action) => {
       return Object.assign({}, state, { error: action.error, isRequesting: false });
     },
+    [getType(type).clear]: (state, action, initialState) => {
+      return Object.assign({}, initialState);
+    },
   };
   return handlers;
 }
@@ -19,7 +22,7 @@ export function createHandlers(type){
 export function createReducer(initialState, handlers) {
   return function reducer(state = initialState, action) {
     if (handlers.hasOwnProperty(action.type)) {
-      return handlers[action.type](state, action);
+      return handlers[action.type](state, action, initialState);
     } else {
       return state;
     }

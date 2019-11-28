@@ -43,7 +43,8 @@ function requestBuilder(method, url, data, config) {
   if (loadingHandle && isShowLoading) {
     Taro.showLoading({
       title: '加载中...',
-      icon: 'none'
+      icon: 'none',
+      mask: true
     });
     Taro.showNavigationBarLoading();
   }

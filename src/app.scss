@@ -1,0 +1,177 @@
+$color-brand: #2579C7;
+/* 引入 Taro UI 默认样式 */
+@import "~taro-ui/dist/style/index.scss";
+
+//全局默认字体, 蚂蚁金服
+page,view,button{
+  font-family: "Monospaced Number", "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/* 弹性布局 */
+.flex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-col{
+	flex-direction: column;
+}
+.flex-between{
+  justify-content: space-between;
+}
+
+/* 字体省略号 */
+.text---{
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.break-all{
+	word-break: break-all
+}
+/* 字体大小 */
+.fs6{font-size: 6px}.fs8{font-size: 8px}.fs10{font-size:10px;}.fs11{font-size:11px;}.fs12{font-size:12px;}.fs13{font-size:13px;}.fs14{font-size:14px;}.fs15{font-size:15px;}.fs16{font-size:16px;}.fs18{font-size:18px;}.fs20{font-size:20px;}.fs24{font-size:24px;}.fs28{font-size:28px;}.fs30{font-size:30px;}.fs32{font-size:32px;}.fs36{font-size:36px;}.fs40{font-size:40px;}.fs48{font-size:48px;}.fs50{font-size:50px;}.fs60{font-size:60px;}
+.fw-400{
+  font-weight: 400;
+}
+.fw-500{
+  font-weight: 500;
+}
+.fw-600{
+  font-weight: 600;
+}
+.fw-700{
+  font-weight: 700;
+}
+
+/* 字体颜色 */
+.c-111{
+  color: #111;
+}
+.c-222{
+  color: #222;
+}
+.c-333{
+  color: #333;
+}
+.c-444{
+  color: #444;
+}
+.c-555{
+  color: #555;
+}
+.c-666{
+  color: #666;
+}
+.c-777{
+  color: #777;
+}
+.c-888{
+  color: #888;
+}
+.c-999{
+  color: #999;
+}
+.c-aaa{
+  color: #aaa;
+}
+.c-ccc{
+  color: #ccc;
+}
+.c-b2{
+  color: #b2b2b2;
+}
+.c-f00{
+  color: #f00;
+}
+.t-center{
+	text-align: center;
+}
+
+//背景色
+.bc-e00{
+	background-color: #e00;
+}
+
+/* 边距 */
+.pt5{
+	padding-top: 5px;
+}
+.pb30{
+	padding-bottom: 30px;
+}
+.pb10{
+	padding-bottom: 10px;
+}
+.pl30{
+	padding-left: 30px;
+}
+.p-lr30{
+	padding-left: 30px;
+	padding-right: 30px;
+}
+.mt7{
+	margin-top: 7px;
+}
+.mt8{
+	margin-top: 8px;
+}
+.mt10{
+	margin-top: 10px;
+}
+.mt20{
+	margin-top: 20px;
+}
+.mt30{
+	margin-top: 30px;
+}
+.mt40{
+	margin-top: 40px;
+}
+.mt60{
+	margin-top: 60px;
+}
+.mt100{
+	margin-top: 200px;
+}
+.mt200{
+	margin-top: 200px;
+}
+.mt300{
+	margin-top: 300px;
+}
+.mb8{
+	margin-bottom: 8px;
+}
+.mb6{
+	margin-bottom: 6px;
+}
+.mb10{
+	margin-bottom: 10px;
+}
+.mb20{
+	margin-bottom: 20px;
+}
+.mb30{
+	margin-bottom: 30px;
+}
+.mb50{
+	margin-bottom: 50px;
+}
+.ml10{
+	margin-left: 10px;
+}
+.ml20{
+	margin-left: 20px;
+}
+.ml30{
+	margin-left: 30px;
+}
+.ml40{
+	margin-left: 40px;
+}
+.ml50{
+	margin-left: 50px;
+}
+.ml60{
+	margin-left: 60px;
+}
