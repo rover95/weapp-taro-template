@@ -11,7 +11,7 @@ export const login = (url, data)=>{
       });
       throw new Error(error);
     }
-    return request.post(url, data,{hideErrorToast:true}).then(res=>{
+    return request.post(url, data,{hideErrorToast: true}).then(res=>{
       if (res.statusCode == 200){
         setState('token', res.data.token);
         Taro.setStorageSync('token', res.data.token);
@@ -27,5 +27,12 @@ export const login = (url, data)=>{
     },err=>{
       dealError(err.message || '请求出错');
     });
+  };
+};
+
+export const setAuth = (userInfo) => {
+  return {
+    type: Types.SET_USERINFO,
+    payload: userInfo
   };
 };

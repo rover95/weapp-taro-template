@@ -1,4 +1,5 @@
-$color-brand: #2579C7;
+$color-brand: #2579C7 !default;
+
 /* 引入 Taro UI 默认样式 */
 @import "~taro-ui/dist/style/index.scss";
 
@@ -17,6 +18,22 @@ page,view,button{
 }
 .flex-between{
   justify-content: space-between;
+}
+
+/* 自定义png图标颜色 */
+$icon-size: 50px;
+.color-icon{
+    display: inline-block;
+    width: $icon-size; 
+    height: $icon-size;
+    overflow: hidden;
+    .img{
+      display: block;
+      position: relative;
+      left: -$icon-size;
+      border-right: $icon-size solid transparent;
+      filter: drop-shadow($icon-size 0 0 $color-brand);
+    }
 }
 
 /* 字体省略号 */
@@ -85,6 +102,10 @@ page,view,button{
 }
 .t-center{
 	text-align: center;
+}
+
+button::after{
+	border: none;
 }
 
 //背景色

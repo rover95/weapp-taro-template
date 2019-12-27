@@ -10,21 +10,26 @@ function initState(data) {
 }
 
 const initAuth = {
-  userInfo: null,
+  data: null,
   isRequesting: false,
   error: null
 };
-export const auth = (state = initAuth, action) => {
+export const userInfo = (state = initAuth, action) => {
   switch (action.type) {
     case Types.USER_LOGIN_SUCCESS:
       return {
         ...state,
-        userInfo: action.payload
+        data: action.payload
+      };
+    case Types.SET_USERINFO:
+      return {
+        ...state,
+        data: action.payload
       };
     case Types.USER_LOGIN_FAIL:
       return {
         ...state,
-        userInfo: null
+        data: null
       };
     default:
       return state;
