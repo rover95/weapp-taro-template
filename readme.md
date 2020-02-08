@@ -3,7 +3,8 @@
 
 ## 下载
 ```sh
-git clone https://github.com/rover95/weapp-taro-template
+//检出到当前文件夹
+git clone https://github.com/rover95/weapp-taro-template .
 git init
 ```
 ## 启动  
