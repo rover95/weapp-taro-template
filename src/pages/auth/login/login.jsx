@@ -3,9 +3,9 @@ import { View, Button, Text } from '@tarojs/components';
 import { AtInput, AtForm, AtButton, AtMessage } from 'taro-ui';
 import { connect } from '@tarojs/redux';
 
-import { getAccessToken, login } from "../../../actions/auth";
-import { getLoginUrl } from "../../../services/api";
-import { getState, setState } from "../../../store/globalState";
+import { getAccessToken, login } from '../../../actions/auth';
+import { getLoginUrl } from '../../../services/api';
+import { getState, setState } from '../../../store/globalState';
 
 @connect((state) => (state), (dispatch) => ({
   
@@ -18,8 +18,8 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      username:'admin',
-      password:'123456'
+      username: 'admin',
+      password: '123456'
     };
   }
   componentDidMount(){
@@ -32,7 +32,7 @@ class Login extends Component {
     const {username,password} = this.state;
     this.props.dispatch(login(getLoginUrl(), { username, password })).then(res=>{
       Taro.reLaunch({
-        url: '/pages/index/index'
+        url: '/pages/index'
       });
     }).catch(err=>{      
       Taro.atMessage({
@@ -43,7 +43,7 @@ class Login extends Component {
   }
   handleUsernameChange(val){
     this.setState({
-      username:val
+      username: val
     });
   }
   handlePasswordChange(val) {

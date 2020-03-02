@@ -26,7 +26,7 @@ class App extends Component {
   config = {
     pages: [
       'pages/auth/login/login',
-      'pages/index/index',
+      'pages/index',
       'pages/demo/demo',
     ],
     window: {
