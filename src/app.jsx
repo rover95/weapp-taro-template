@@ -3,7 +3,8 @@ import Taro, { Component } from '@tarojs/taro';
 import { Provider } from '@tarojs/redux';
 import 'taro-ui/dist/style/index.scss';
 
-import print_log from "./utils/print_log_co_info";
+import print_log from './utils/print_log_co_info';
+import appUpdate from './utils/appUpdate';
 import Index from './pages/index';
 
 import configStore from './store';
@@ -35,8 +36,12 @@ class App extends Component {
       navigationBarTextStyle: 'black'
     }
   }
-
-  componentDidMount () {}
+  componentWillMount() {
+    appUpdate();//检查是否有更新
+  }
+  componentDidMount () {
+    
+  }
 
   componentDidShow () {}
 
