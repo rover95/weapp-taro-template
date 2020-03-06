@@ -15,6 +15,7 @@ export const login = (url, data)=>{
       if (res.statusCode == 200){
         setState('token', res.data.token);
         Taro.setStorageSync('token', res.data.token);
+        Taro.setStorageSync('userInfo', res.data);
         dispatch({
           type: Types.USER_LOGIN_SUCCESS,
           payload: res.data
