@@ -6,6 +6,11 @@ import { setState } from '../store/globalState';
 export const login = (url, data)=>{
   return dispatch =>{
     function dealError(error) {
+      Taro.showToast({
+        title: error,
+        icon: 'none',
+        duration: 1500
+      });
       dispatch({
         type: Types.USER_LOGIN_FAIL,
       });
