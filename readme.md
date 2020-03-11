@@ -12,9 +12,17 @@ git init
 ---
 
 ```sh
+//全局安装Taro, 版本需与package中一致
+npm install -g @tarojs/cli@1.3.13
+
+//如果安装过程出现sass相关的安装错误
+npm install -g mirror-config-china
+
 npm i
 npm start //开发模式
 ```
+[文档地址](https://taro-docs.jd.com/taro/docs/GETTING-STARTED.html#%E4%BF%9D%E6%8C%81-tarojs-cli-%E7%9A%84%E7%89%88%E6%9C%AC%E4%B8%8E%E5%90%84%E7%AB%AF%E4%BE%9D%E8%B5%96%E7%89%88%E6%9C%AC%E4%B8%80%E8%87%B4)
+
 
 ### 编译
 
