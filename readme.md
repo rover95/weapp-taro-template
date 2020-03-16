@@ -89,40 +89,47 @@ export const siteList = createReducer(initState([]), createHandlers(Types.GET_SI
 ---
 
 ```
-|-- src
-    |-- app.jsx           //入口文件
-    |-- app.scss          //全局样式
-    |-- config.js         //配置文件
-    |-- actions           //action文件夹
-    |-- components        //组件文件夹
-    |-- constants         //常量文件夹
-    |-- pages             //页面
-    |-- reducers          //reducer文件夹
-    |-- services          //接口
-    |   |-- api.js        //应用api URL管理
-    |   |-- request.js    //异步拦截器封装
-    |-- static            //无需编译的静态文件
-    |   |-- f2-canvas     //F2图表
-    |   |   |-- f2-canvas.js
-    |   |   |-- f2-canvas.json
-    |   |   |-- f2-canvas.wxml
-    |   |   |-- f2-canvas.wxss
-    |   |   |-- lib
-    |   |       |-- EventEmitter.min.js
-    |   |       |-- f2.js
-    |   |       |-- renderer.js
-    |   |-- img                     //图片
-    |-- store
-    |   |-- globalState.js          //简易全局数据存储
-    |   |-- index.js                //redux 入口
-    |-- utils
-        |-- createAction.js         //action构造器
-        |-- createActionType.js     //action-type构造器
-        |-- creatrReducer.js        //requecer构造器
-        |-- formatTime.js           //时间格式化
-        |-- print_log_co_info.js    //co 信息
-        |-- chart                   //图表封装
-            |-- line.js
-            |-- pie.js
-            |-- pieRose.js
+|-- project
+    |-- package.json          
+    |-- project.config.json   //小程序项目配置
+    |-- readme.md             //项目文档
+    |-- sitemap.json          //小程序定位功能用途说明
+    |-- config                //配置文件夹
+    |-- dist                  //编译后文件夹
+    |-- src
+        |-- app.jsx           //入口文件
+        |-- app.scss          //全局样式
+        |-- config.js         //配置文件
+        |-- actions           //action文件夹
+        |-- components        //组件文件夹
+        |-- constants         //常量文件夹
+        |-- pages             //页面
+        |-- reducers          //reducer文件夹
+        |-- services          //接口
+        |   |-- api.js        //应用api URL管理
+        |   |-- request.js    //异步拦截器封装
+        |-- static            //无需编译的静态文件
+        |   |-- f2-canvas     //F2图表
+        |   |   |-- f2-canvas.js
+        |   |   |-- f2-canvas.json
+        |   |   |-- f2-canvas.wxml
+        |   |   |-- f2-canvas.wxss
+        |   |   |-- lib
+        |   |       |-- EventEmitter.min.js
+        |   |       |-- f2.js
+        |   |       |-- renderer.js
+        |   |-- img                     //图片
+        |-- store
+        |   |-- globalState.js          //简易全局数据存储
+        |   |-- index.js                //redux 入口
+        |-- utils
+            |-- createAction.js         //action构造器
+            |-- createActionType.js     //action-type构造器
+            |-- creatrReducer.js        //requecer构造器
+            |-- formatTime.js           //时间格式化
+            |-- print_log_co_info.js    //co 信息
+            |-- chart                   //图表封装
+                |-- line.js
+                |-- pie.js
+                |-- pieRose.js
 ```
