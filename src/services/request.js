@@ -80,12 +80,8 @@ function requestBuilder(method, url, data, config) {
       });
     }
     return new Promise((resolved, rejected) => {
-      const requestOption = {};
-      if (config && config.header) {
-        requestOption.header = config.header;
-      }
       Taro.request({
-        ...requestOption,
+        ...config,
         url,
         method,
         data
