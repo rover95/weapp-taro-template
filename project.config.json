@@ -1,6 +1,6 @@
 {
 	"miniprogramRoot": "dist/",
-	"projectname": "wxapp-test-taro-template",
+	"projectname": "wxapp-taro-template",
 	"description": "taro模板redux + taroUI",
 	"appid": "touristappid",
 	"setting": {

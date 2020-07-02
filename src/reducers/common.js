@@ -1,5 +1,5 @@
 import * as Types from '../constants/actionType';
-import { createReducer, createHandlers, initState } from '../utils/creatrReducer';
+import { createReducer, createHandlers, initState } from '../store/tool/creatrReducer';
 
 export const temporary = (state = {}, action) => {
   switch (action.type) {

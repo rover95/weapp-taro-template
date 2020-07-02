@@ -1,5 +1,5 @@
-import request from '../services/request';
-import getType from '../utils/createActionType';
+import request from '../../services/request';
+import getType from './createActionType';
 
 /* 
   构建异步请求的action
@@ -24,7 +24,7 @@ export function createAction({ method, url, data, type }, cb) {
         });
         throw new Error(res);
       }
-      return res;
+      return cb ? cb(res.data) : res;
     }).catch(err => {
       dispatch({
         type: actionType.fail,

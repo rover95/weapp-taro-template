@@ -1,4 +1,4 @@
-import getType from '../utils/createActionType';
+import getType from './createActionType';
 
 //构建异步请求reducer处理函数
 export function createHandlers(type){

@@ -1,5 +1,5 @@
 import * as Types from '../constants/actionType';
-import { createReducer, createHandlers } from '../utils/creatrReducer';
+import { createReducer, createHandlers } from '../store/tool/creatrReducer';
 
 function initState(data) {
   return {
