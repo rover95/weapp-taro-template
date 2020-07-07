@@ -1,4 +1,4 @@
-let log = function(){
+const log = function(){
 /*
     ██████
    ███░░███
@@ -11,15 +11,15 @@ let log = function(){
 
 
 */  
-}
+};
 
-let print_log = ()=>{
+const print_log = ()=>{
   let lines = new String(log);
-  lines = lines.substring(lines.indexOf("/*") + 3, lines.lastIndexOf("*/"));
-  let co = `\n ©2010-`+new Date().getFullYear()+ ` 飞尚科技`;
+  lines = lines.substring(lines.indexOf('/*') + 3, lines.lastIndexOf('*/'));
+  const co = '\n ©2010-'+new Date().getFullYear()+ ' 飞尚科技';
 
-  console.log(lines + co)
+  console.log('%c ' + lines + co, 'color:#3af');
 
-}
+};
 
 export default print_log;
