@@ -9,13 +9,14 @@ export function createAction({ method, url, data, type }, cb) {
   return dispatch => {
     const actionType = getType(type);
     dispatch({
-      type: type,
+      type: actionType.begin,
     });
     return request[method](url, data).then(res => {
+      const payload = cb ? cb(res.data) : res.data;
       if (res.statusCode === 200 || res.statusCode === 204) {
         dispatch({
           type: actionType.success,
-          payload: cb ? cb(res.data) : res.data
+          payload
         });
       } else {
         dispatch({
@@ -24,7 +25,7 @@ export function createAction({ method, url, data, type }, cb) {
         });
         throw new Error(res);
       }
-      return cb ? cb(res.data) : res;
+      return payload;
     }).catch(err => {
       dispatch({
         type: actionType.fail,
