@@ -3,6 +3,7 @@ import Taro, { Component } from '@tarojs/taro';
 import { Provider } from '@tarojs/redux';
 import 'taro-ui/dist/style/index.scss';
 
+import { setAuth } from './actions/auth';
 import print_log from './utils/print_log_co_info';
 import appUpdate from './utils/appUpdate';
 import Index from './pages/index';
@@ -38,6 +39,10 @@ class App extends Component {
   }
   componentWillMount() {
     appUpdate();//检查是否有更新
+    const userInfo = Taro.getStorageSync('userInfo');
+    if (!!userInfo) {
+      this.props.dispatch(setAuth(userInfo));
+    };
   }
   componentDidMount () {
     

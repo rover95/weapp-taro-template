@@ -23,16 +23,19 @@ export function createAction({ method, url, data, type }, cb) {
           type: actionType.fail,
           error: { message: res.data.message || '请求出错' }
         });
-        throw new Error(res);
+        //继续向外抛出错误
+        throw { message: res.data.message || '请求出错', hasDispatch: true };
       }
       return payload;
     }).catch(err => {
-      dispatch({
-        type: actionType.fail,
-        error: { message: '网络异常' }
-      });
+      if(!err.hasDispatch){
+        dispatch({
+          type: actionType.fail,
+          error: { message: err.message },
+        });
+      }
+      //继续向外抛出错误
       throw new Error(err);
-      return err;
     });
   };
 }
