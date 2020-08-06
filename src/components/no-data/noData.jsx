@@ -20,8 +20,9 @@ class NoData extends Component {
   componentDidHide () {}
   externalClasses= ['out-class']
   render() {
+    const {top} = this.props;
     return (
-      <View className='out-class'>
+      <View className='out-class' style={`margin-top: ${top}`}>
         <View className='box'>
           <Image className='img' src={img}></Image>
           <View className='text'>暂无数据</View>
