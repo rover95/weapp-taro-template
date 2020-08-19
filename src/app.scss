@@ -36,6 +36,24 @@ $icon-size: 50px;
     }
 }
 
+//伪类阴影  符元素需设置z-index和position: relative;
+.shadow{
+	position: relative;
+	&::before{
+		content:'';
+		position: absolute;
+		bottom: -20px;
+		left: 50%;
+		transform: translateX(-50%);
+		width:90%;
+		height:68px;
+		background:rgba(0,0,0,0.06);
+		border-radius:9px;
+		filter:blur(15px);
+		z-index: -2;
+	}
+}
+
 /* 字体省略号 */
 .text---{
 	overflow: hidden;
