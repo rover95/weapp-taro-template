@@ -1,8 +1,17 @@
 <!--dist/components/line.wxml-->
-<view wx:if="{{opts.length>0}}" wx:for="{{opts}}" wx:key="key" wx:for-index='idx'>
-  <view wx:if="{{!item.info.noTitle}}" class="title">{{item.info.name}}({{item.info.unit}})</view>
-  <view style="width:{{item.info.width?item.info.width+'rpx':'100vw'}};height:{{item.info.height?item.info.height+'rpx':'250px'}};background-color:#fff;margin-bottom:30px">
+<block wx:if="{{!simpleChart}}">
+  <view wx:if="{{opts.length>0}}" wx:for="{{opts}}" wx:key="key" wx:for-index='idx'>
+    <view wx:if="{{!item.config.noTitle}}" class="title">{{item.config.name}}({{item.config.unit}})</view>
+    <view
+      style="width:{{item.config.width?item.config.width+'rpx':'100%'}};height:{{item.config.height?item.config.height+'rpx':'250px'}};background-color:#fff;margin-bottom:30px">
+      <view wx:if="{{!!item.noData}}" class="no-data">暂无数据</view>
+      <ff-canvas wx:else canvas-id="{{idx + 'p'}}" opts="{{item}}"></ff-canvas>
+      <View wx:if="{{item.config.lable}}" class='lable'>{{item.config.lable}}</View>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <view wx:if="{{opts.length>0}}" style="width:100%;height: 100%;" wx:for="{{opts}}" wx:key="key" wx:for-index='idx'>
     <ff-canvas canvas-id="{{idx + 'p'}}" opts="{{item}}"></ff-canvas>
   </view>
-</view>
-
+</block>
