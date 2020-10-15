@@ -1,5 +1,5 @@
-const log = function(){
-/*
+const print_log = ()=>{
+  const lines = `
     ██████
    ███░░███
   ░███ ░░░  ████████   ██████   ██████              █████  █████ ████ ████████
@@ -8,16 +8,8 @@ const log = function(){
   ░███      ░███     ░███░░░  ░███░░░              ░░░░███ ░███ ░███  ░███ ░███
   █████     █████    ░░██████ ░░██████             ██████  ░░████████ ████ █████
  ░░░░░     ░░░░░      ░░░░░░   ░░░░░░             ░░░░░░    ░░░░░░░░ ░░░░ ░░░░░
-
-
-*/  
-};
-
-const print_log = ()=>{
-  let lines = new String(log);
-  lines = lines.substring(lines.indexOf('/*') + 3, lines.lastIndexOf('*/'));
+  `;
   const co = '\n ©2010-'+new Date().getFullYear()+ ' 飞尚科技';
-
   console.log('%c ' + lines + co, 'color:#3af');
 
 };
